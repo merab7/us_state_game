@@ -15,8 +15,9 @@ y_list = data["y"].to_list()
 score = 0
 guessed_list = []
 game_on = True
-
+name = turtle.textinput(title="player name", prompt="your name: ")
 while game_on:
+
     user_input = turtle.textinput(title=f"{score}""/"f"{len(states_list)}", prompt="Write a state: ")
 
     if user_input.lower() == "exit":
@@ -29,14 +30,10 @@ while game_on:
                 indexes = states_list.index(r)
                 Write(x=x_list[indexes], y=y_list[indexes], state=r)
 
-learn = []
-
-for x in states_list:
-    if x.lower() not in guessed_list:
-        learn.append(x)
+learn = [x for x in states_list if x.lower() not in guessed_list]
 
 you_must_learn = {
     "states": learn
 }
 
-pandas.DataFrame(you_must_learn).to_csv("learn_this")
+pandas.DataFrame(you_must_learn).to_csv(f"{name} learn_this")
